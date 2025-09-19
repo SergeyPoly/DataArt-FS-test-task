@@ -18,7 +18,12 @@ export class BookService {
   }
 
   async findAll(userId: string): Promise<Book[]> {
-    return this.bookRepository.find({ where: { userId } });
+    return this.bookRepository.find({
+      where: { userId },
+      order: {
+        createdAt: 'DESC',
+      },
+    });
   }
 
   async findOne(id: string, userId: string): Promise<Book> {
